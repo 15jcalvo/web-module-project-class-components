@@ -1,4 +1,5 @@
 import React from 'react';
+import './Todo.css';
 
 const Todo = props => {
     const handleClick = () => {
@@ -6,7 +7,7 @@ const Todo = props => {
     }
     return(
         <div>
-            <p onClick={handleClick}>{props.item.task}</p>
+            <p onClick={handleClick} className={`item${props.item.completed ? ' completed' : ''}`}>{props.item.task}</p>
         </div>
     );
 };
