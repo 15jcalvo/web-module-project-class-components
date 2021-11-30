@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import TodoList from './components/TodoList';
 import TodoForm from './components/TodoForm';
+import { render } from 'react-dom';
 
 const todo = [
   {
@@ -26,11 +27,12 @@ class App extends React.Component {
     }
   };
 
-  addTodo = () => {
+  addTodo = (e) => {
+    e.preventDefault();
     console.log("clicked add todo");
     const newTodo = {
-      task: '',
-      id: Date.now,
+      task: 'test',
+      id: parseInt(Math.random()*10000000000000),
       completed: false
     };
     this.setState({
@@ -44,8 +46,10 @@ class App extends React.Component {
     return (
       <div>
         <h2>Todo List</h2>
-        <TodoList todo={todo}/>
-        <TodoForm addTodo={this.addTodo}/>
+          <div>
+          <TodoList todo={this.state.todo}/>
+          <TodoForm addTodo={this.addTodo}/>
+          </div>
       </div>
     );
   };
