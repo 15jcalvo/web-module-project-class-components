@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import TodoList from './components/TodoList';
 import TodoForm from './components/TodoForm';
 import { render } from 'react-dom';
+import Item from '../../web-guided-project-class-components/followAlong/src/components/Item';
 
 const todo = [
   {
@@ -48,13 +49,27 @@ class App extends React.Component {
       input: e.target.value
     });
   };
+  toggleTodo = (item) => {
+    console.log('clicked todo');
+    this.setState({
+      ...this.state,
+      todo: this.state.todo.map(todo => {
+        if (todo.id === item.id) {
+          return {...todo, completed: !todo.completed}
+        } else {
+          return todo;
+        }
+      })
+    })
+    console.log(this.state.todo);
+  };
 
   render() {
     return (
       <div>
         <h2>Todo List</h2>
           <div>
-          <TodoList todo={this.state.todo}/>
+          <TodoList todo={this.state.todo} toggleTodo={this.toggleTodo}/>
           <TodoForm addTodo={this.addTodo} onChange={this.onChange} input={this.state.input}/>
           </div>
       </div>
