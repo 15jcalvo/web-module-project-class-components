@@ -31,7 +31,7 @@ class App extends React.Component {
     e.preventDefault();
     console.log("clicked add todo");
     const newTodo = {
-      task: 'test',
+      task: this.state.input,
       id: parseInt(Math.random()*10000000000000),
       completed: false
     };
@@ -40,7 +40,14 @@ class App extends React.Component {
       todo: [...this.state.todo, newTodo]
     });
     console.log(this.state.todo);
-  }
+  };
+  onChange = (e) => {
+    console.log(e.target.value);
+    this.setState({
+      ...this.state,
+      input: e.target.value
+    });
+  };
 
   render() {
     return (
@@ -48,7 +55,7 @@ class App extends React.Component {
         <h2>Todo List</h2>
           <div>
           <TodoList todo={this.state.todo}/>
-          <TodoForm addTodo={this.addTodo}/>
+          <TodoForm addTodo={this.addTodo} onChange={this.onChange} input={this.state.input}/>
           </div>
       </div>
     );
