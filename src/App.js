@@ -25,12 +25,27 @@ class App extends React.Component {
       todo: todo,
     }
   };
+
+  addTodo = () => {
+    console.log("clicked add todo");
+    const newTodo = {
+      task: '',
+      id: Date.now,
+      completed: false
+    };
+    this.setState({
+      ...this.state,
+      todo: [...this.state.todo, newTodo]
+    });
+    console.log(this.state.todo);
+  }
+
   render() {
     return (
       <div>
         <h2>Todo List</h2>
-        <TodoList todo = {todo}/>
-        <TodoForm />
+        <TodoList todo={todo}/>
+        <TodoForm addTodo={this.addTodo}/>
       </div>
     );
   };
