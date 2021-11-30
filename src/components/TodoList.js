@@ -2,13 +2,16 @@
 // feel free to change this component.js into TodoList.js
 
 import React from 'react';
+import Todo from './Todo';
 
 const TodoList = props => {
     return (
         <div>
-            <p>Todo list here</p>
+            {props.todo.map(item => (
+                <Todo item={item}/>
+            ))}
         </div>
-    )
+    );
 };
 
 export default TodoList;
